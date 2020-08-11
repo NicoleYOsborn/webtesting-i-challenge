@@ -6,9 +6,45 @@ const { success, fail, repair, get } = require("./enhancer.js");
 
 describe('enhancer functions', ()=>{
     describe('success tests', ()=>{
-        test.todo('that it increases enhancement by 1');
-        test.todo('that id does not change if enhancment is 20');
-        test.todo('that durability is not changed');
+        test('that it increases enhancement by 1', ()=>{
+            const item = {
+                name: "subtle knife", 
+                enhancement: 10,
+                durability: 50
+            }
+            const expected = {
+                name: "subtle knife", 
+                enhancement: 11,
+                durability: 50
+            }
+            expect(success(item)).toStrictEqual(expected);
+        });
+        test('that id does not change if enhancment is 20', ()=>{
+            const item = {
+                name: "subtle knife", 
+                enhancement: 20,
+                durability: 50
+            }
+            const expected = {
+                name: "subtle knife", 
+                enhancement: 20,
+                durability: 50
+            }
+            expect(success(item)).toStrictEqual(expected);
+        });
+        test('that durability is not changed', ()=>{
+            const item = {
+                name: "subtle knife", 
+                enhancement: 20,
+                durability: 50
+            }
+            const expected = {
+                name: "subtle knife", 
+                enhancement: 20,
+                durability: 50
+            }
+            expect(success(item)).toStrictEqual(expected);
+        });
     })
     describe('fail functions', ()=>{
         test ('that it decreases durability by 5 if enhancement is < 15', ()=>{
