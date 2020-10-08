@@ -102,4 +102,32 @@ describe('enhancer functions', ()=>{
             expect(repair(item)).toStrictEqual(expected);
         });
     })
+    describe('get function', ()=>{
+        test('that it adds enhancement level to name when greater than 0', ()=>{
+        const item = {
+            name: "subtle knife", 
+            enhancement: 15,
+            durability: 50
+        }
+        const expected = {
+            name: "[+15] subtle knife", 
+            enhancement: 15,
+            durability: 50
+        }
+            expect(get(item)).toStrictEqual(expected);
+        });
+        test('that name stays the same if enhancement is 0', ()=>{
+        const item = {
+            name: "subtle knife", 
+            enhancement: 0,
+            durability: 50
+        }
+        const expected = {
+            name: "subtle knife", 
+            enhancement: 0,
+            durability: 50
+            }
+            expect(get(item)).toStrictEqual(expected);
+        })
+    })
 })
