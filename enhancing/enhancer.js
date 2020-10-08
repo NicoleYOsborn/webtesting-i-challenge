@@ -6,17 +6,42 @@ module.exports = {
 };
 
 function success(item) {
-  return { ...item };
+  const newItem = item;
+
+  if(item.enhancement < 20){
+    newItem.enhancement = item.enhancement + 1;
+  }
+  return newItem;
 }
 
 function fail(item) {
-  return { ...item };
+
+  const newItem = item;
+
+  if (item.enhancement < 15){
+    newItem.durability = item.durability - 5;
+  } else if (item.enhancement >=15) {
+    newItem.durability = item.durability - 10;
+  }
+
+  if (item.enhancement > 16){
+    newItem.enhancement = item.enhancement - 1;
+  }
+  return newItem;
 }
 
 function repair(item) {
-  return { ...item };
+  const newItem = {...item, durability: 100};
+  return  newItem ;
 }
 
 function get(item) {
+  const newItem = item;
+
+  if(item.enhancement > 0){
+    newItem.name = `[+${item.enhancement}] ${item.name}`;
+    return newItem;
+  }else{
   return { ...item };
+  }
 }
